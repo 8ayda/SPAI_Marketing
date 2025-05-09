@@ -1,0 +1,214 @@
+/* Base Theme Variables - Matching SPAI */
+:root {
+  --primary: hsl(220, 90%, 40%);
+  --primary-dark: hsl(220, 90%, 30%);
+  --secondary: hsl(140, 78%, 34%);
+  --bg: hsl(225, 36%, 96%);
+  --surface: hsl(0, 0%, 100%);
+  --text: hsl(229, 23%, 14%);
+  --text-muted: hsl(230, 15%, 50%);
+  --border: hsl(230, 15%, 94%);
+  --active: hsl(230, 90%, 97%);
+  --sidebar-bg: hsl(0, 0%, 99%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  
+  --space-xs: 4px;    
+  --space-sm: 8px;    
+  --space: 16px;      
+  --space-lg: 24px;  
+  --space-xl: 32px;   
+  --space-2xl: 48px;  
+  
+  --radius-sm: 5px;
+  --radius: 10px;
+  --radius-lg: 20px;
+  
+  --transition: 200ms ease;
+
+  --navbar-padding: 16px;     
+  --content-spacing: 24px;     
+  --text-spacing: 8px;         
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Admin Layout */
+.admin-container {
+  padding: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navbar Styling */
+.navbar {
+    height: 80px;  /* reduced from 120px for better proportion */
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    padding: var(--space) var(--space-xl);
+    margin: var(--space-lg) var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.navbar-brand {
+    color: var(--surface) !important;
+    font-size: 1.5rem;  /* increased for better visibility */
+    font-weight: 800;   /* increased weight */
+    padding: 0 var(--space);
+    letter-spacing: 0.5px;  /* added letter spacing */
+    text-transform: uppercase;  /* make it all caps */
+    display: flex;
+    align-items: center;
+    gap: var(--space);
+}
+
+/* Add glow effect to brand */
+.navbar-brand::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: var(--space-xl);
+    width: 180px;  /* adjust based on your brand width */
+    height: 40px;
+    transform: translateY(-50%);
+    background: var(--primary);
+    filter: blur(40px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+
+.nav-link {
+    color: var(--surface) !important;
+    opacity: 0.9;
+    transition: var(--transition);
+    padding: var(--space-xs) var(--space-lg);  /* increased horizontal padding */
+    margin: 0 var(--space-xs);
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+}
+
+
+
+
+/* Cards */
+.card {
+    
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  padding: var(--space);             /* reduced from space-lg */
+  margin-bottom: var(--space-lg);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-body {
+  padding: var(--space);             /* reduced from space-lg */
+}
+
+.card-title {
+  margin-bottom: var(--space-sm);    /* reduced from space */
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: var(--space);       /* reduced from space-lg */
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-xs);    /* reduced from text-spacing */
+  font-weight: 500;
+}
+
+.form-control {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px;
+    transition: all 0.3s ease;
+    color: #495057;
+}
+
+.form-control:focus {
+    background-color: #ffffff;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.15);
+    outline: 0;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+    font-weight: 300;
+}
+
+/* Dropdown Styling */
+.Select-control {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    padding: 4px !important;
+}
+
+.Select-menu-outer {
+    background-color: white !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.Select-option:hover {
+    background-color: #f8f9fa !important;
+}
+
+.Select-value, .Select-placeholder {
+    padding: 4px 8px !important;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary); /* Using the green secondary color */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    background-color: var(--secondary);
+}

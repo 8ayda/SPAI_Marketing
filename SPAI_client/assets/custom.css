@@ -1,0 +1,1060 @@
+/* Base Theme Variables */
+:root {
+  /* Modern color palette */
+  --primary: hsl(220, 90%, 40%); /* Dark Blue */
+  --primary-dark: hsl(220, 90%, 30%); /* Darker Blue */
+  --secondary: hsl(140, 78%, 34%); /* Green */
+  --bg: hsl(225, 36%, 96%);
+  --surface: hsl(0, 0%, 100%);
+  --text: hsl(229, 23%, 14%);
+  --text-muted: hsl(230, 15%, 50%);
+  --border: hsl(230, 15%, 94%);
+  --active: hsl(230, 90%, 97%);
+  --sidebar-bg: hsl(0, 0%, 99%);
+  
+  /* Modern shadow */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  
+  /* Spacing & Layout */
+  --space-xs: 5px;
+  --space-sm: 10px;
+  --space: 25px;
+  --space-lg: 20px;
+  --space-xl: 40px;
+  
+  /* Border Radius */
+  --radius-sm: 5px;
+  --radius: 10px;
+  --radius-lg: 20px;
+  
+  /* Transitions */
+  --transition: 200ms ease;
+
+  /* Sidebar Variables */
+  --sidebar-width: 250px;
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg); 
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.app-container {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+  gap: var(--space);
+  padding: var(--space);
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--sidebar-bg); 
+  color: var(--text); 
+  position: sticky;
+  top: var(--space);
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
+  height: calc(100vh - 2 * var(--space));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent; 
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--text-muted);
+  border-radius: 3px;
+}
+
+.sidebar-header {
+  padding-bottom: var(--space);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-sm);
+}
+
+.sidebar-title {
+  font-size: 40px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin: var(--space-xs) 0 var(--space-xs);
+  padding-left: var(--space-xs);
+}
+
+.sidebar-nav-group {
+  padding: var(--space-xs) 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all var(--transition);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: var(--active);
+  color: var(--primary);
+  border-color: var(--border);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-link i {
+  font-size: 1rem;
+  opacity: 0.8;
+  width: 20px;
+  text-align: center;
+}
+
+.season-dashboard-btn {
+  margin: var(--space-xs) 0;
+  margin-bottom: var(--space-xs);
+  padding: var(--space-sm) var(--space);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  transition: all var(--transition);
+}
+
+.season-dashboard-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--active);
+  color: var(--primary);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Content Area */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+.content-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* Cards - Enhanced with sidebar-like styling */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(0,0,0,.1);
+  backdrop-filter: blur(8px);
+  transition: all var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}
+
+.card-title {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.card-text {
+  color: #666;
+}
+
+.card .btn-primary {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+/* Game Card Styles */
+.game-card {
+    padding: 0 !important;
+    overflow: hidden;
+    transition: transform var(--transition);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.game-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+}
+
+.game-card .card-body {
+    padding: var(--space-lg);
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+}
+
+/* Form Elements */
+input, 
+select, 
+textarea {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-sm) var(--space);
+  transition: all var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* Tables */
+table {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
+
+th, td {
+  padding: var(--space);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+tr:hover {
+  background: var(--active);
+}
+
+/* Modal/Dialog */
+.modal {
+    background: rgba(255, 255, 255, 0.98);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  padding: var(--space-xl);
+}
+
+/* Utilities */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.gap { gap: var(--space); }
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.sidebar-system-container {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space);
+}
+
+.sidebar-nav-container {
+  margin-top: var(--space-xs);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* Add subtle animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation for elements coming from the bottom */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(50px); /* Start 50px below */
+        opacity: 0; /* Start fully transparent */
+    }
+    to {
+        transform: translateY(0); /* End at the original position */
+        opacity: 1; /* End fully visible */
+    }
+}
+
+/* Value Cards */
+.value-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0,0,0,.1);
+    backdrop-filter: blur(8px);
+    transition: all var(--transition);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+}
+
+.value-card-icon {
+    height: 48px;
+    width: auto;
+    margin-bottom: var(--space-md);
+}
+
+.value-card-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+}
+
+.value-card .text-muted {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--space);
+}
+
+/* Dashboard Title */
+.dashboard-title {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+}
+
+.dashboard-container h1 {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+/* Chart Containers */
+.chart-container {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+}
+
+.chart-container:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Table Styling - Enhanced */
+.dash-table-container {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.dash-header {
+  background: var(--bg) !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  border-bottom: 2px solid var(--border) !important;
+}
+
+.dash-cell {
+  padding: var(--space-sm) var(--space) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.dash-filter input {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: var(--space-xs) !important;
+}
+
+/* Summary Cards */
+.summary-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.summary-card .card-body {
+  padding: var(--space-lg);
+}
+
+.summary-card h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  margin-bottom: var(--space-sm);
+}
+
+.summary-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Logo Images */
+.logo-image {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  margin-right: var(--space-sm);
+}
+
+/* Sidebar Brand */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+}
+
+.sidebar-brand img {
+    object-fit: contain;
+    height: 70px;  /* Increased from 30px to 40px */
+    width: auto;
+    transition: transform var(--transition);
+}
+
+.sidebar-brand img:hover {
+    transform: scale(1.05);  /* Optional: adds a subtle hover effect */
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  margin-bottom: var(--space-xl);
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-header .text-muted {
+  font-size: 1.1rem;
+}
+
+/* Export Dropdown Menu Styling */
+.export-dropdown .dropdown-menu {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-xs);
+    margin-top: var(--space-xs);
+}
+
+.export-dropdown .dropdown-item {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: var(--space-sm) var(--space);
+    border-radius: var(--radius);
+    color: var(--text);
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.export-dropdown .dropdown-item:hover {
+    background: var(--active);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.export-dropdown .dropdown-item i {
+    font-size: 1rem;
+    opacity: 0.8;
+    width: 20px;
+    text-align: center;
+}
+
+/* Home Page Styles */
+.home-page {
+    min-height: 100vh;
+    background: url('/assets/images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    
+}
+
+.spai-logo {
+    height: 200px;
+    width: auto;
+}
+
+.welcome-title {
+    color: hsl(215, 94%, 73%);
+    font-size: 65px;
+    font-weight: 800;
+    margin-top: -50px; /* Remove extra spacing above the title */ 
+}
+
+/* Club Identity */
+.club-identity {
+    display: flex;
+    align-items: center; /* Align logo and name vertically */
+    gap: 10px; /* Add spacing between the logo and the name */
+    margin-bottom: var(--space-lg); /* Keep spacing below the identity section */
+}
+
+.club-logo {
+    height: 67px;
+    width: auto;
+    margin: 0; /* Remove any extra margins */
+}
+
+.club-name {
+    font-size: 60px;
+    font-weight: 900;
+    color: hsl(150, 1%, 50%);
+    margin: 0; /* Remove any extra margins */
+}
+
+.welcome-title {
+  color: hsl(215, 94%, 73%);
+    font-size: 65px;
+    font-weight: 800;
+    margin-top: -90px;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    width: 200px; /* Fixed width for all buttons */
+    height: 50px; /* Fixed height for all buttons */
+    padding: 0; /* Remove extra padding */
+    border-radius: var(--radius-lg); /* Rounded corners */
+    font-size: 1rem; /* Adjust font size */
+    font-weight: 600; /* Slightly bold text */
+    border: none; /* Remove border */
+    background: linear-gradient(135deg, hsl(200, 80%, 85%), hsl(200, 70%, 75%)); /* Light gradient colors */
+    color: hsl(220, 20%, 20%); /* Dark text for contrast */
+    transition: all var(--transition); /* Smooth hover effect */
+    text-align: center; /* Center text */
+    display: flex; /* Flexbox for centering content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+.nav-button:hover {
+    background: linear-gradient(135deg, hsl(200, 90%, 90%), hsl(200, 80%, 80%)); /* Lighter gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: var(--shadow-lg); /* Enhanced shadow on hover */
+    color: hsl(220, 30%, 15%); /* Slightly darker text on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    
+    .club-name {
+        font-size: 2rem;
+    }
+    
+    .club-identity {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .club-logo {
+        height: 50px;
+    }
+}
+
+/* Lead Text */
+.lead {
+    font-size: 18px;
+    font-weight: 500; /* Normal font weight */
+    color: hsl(143, 69%, 90%);
+    line-height: 1.6; /* Improve readability with proper line spacing */
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* Apply the animation to the homepage elements */
+.home-page .spai-logo,
+.home-page .welcome-title,
+.home-page .club-identity,
+.home-page .lead,
+.home-page .nav-button {
+    animation: slideInFromBottom 0.8s ease-out; /* Animation duration and easing */
+    animation-fill-mode: forwards; /* Ensure the final state is retained */
+    opacity: 0; /* Start invisible */
+}
+
+/* Contact Page Styles */
+.contact-page {
+    min-height: 100vh;
+    padding: var(--space-lg);
+    background-color: var(--bg);
+}
+
+.contact-page h1 {
+    color: var(--text);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.contact-page .lead {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.contact-page .form-label {
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: var(--space-xs);
+}
+
+.contact-page .form-control {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+}
+
+.contact-page .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
+}
+
+#contact-feedback {
+    padding: 1rem;
+    border-radius: var(--radius);
+    animation: fadeIn 0.3s ease;
+}
+
+#contact-feedback.text-success {
+    background: rgba(var(--success-rgb), 0.1);
+    border: 1px solid var(--success);
+}
+
+#contact-feedback.text-danger {
+    background: rgba(var(--danger-rgb), 0.1);
+    border: 1px solid var(--danger);
+}
+
+.contact-page textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-page .btn-primary {
+    width: auto; 
+    min-width: 200px; /* Set a minimum width */
+    padding: var(--space-sm) var(--space);
+    font-weight: 600;
+    font-size: medium;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 auto; /* Center the button */
+    display: block; /* Makes margin: 0 auto work */
+}
+
+.contact-page .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Notifications Styles */
+.notifications-page {
+    padding: var(--space-lg);
+    background-color: var(--bg);
+}
+
+.notification-card {
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: var(--space-sm); /* Add padding to make card more compact */
+}
+
+.notification-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.notification-card.unread {
+    border-left: 4px solid var(--primary);
+    background-color: rgba(var(--primary-rgb), 0.05);
+}
+
+.notification-card .card-body {
+    padding: var(--space-sm); /* Reduce padding inside card */
+}
+
+.notification-title {
+    font-size: 1rem; /* Slightly smaller font size */
+    font-weight: 600;
+    margin-bottom: var(--space-xs); /* Reduce bottom margin */
+    color: var(--text);
+}
+
+.notification-message {
+    color: var(--text-muted);
+    font-size: 0.9rem; /* Slightly smaller font size */
+    margin-bottom: var(--space-xs); /* Reduce bottom margin */
+    line-height: 1.4; /* Reduce line height */
+}
+
+.notifications-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-sm) 0; /* Add small padding top and bottom */
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Page Header */
+.page-header {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Text Muted */
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Shadow Small */
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+/* Season Overview Specific Styles */
+.sponsor-leaderboard {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+}
+
+.sponsor-leaderboard th {
+    background: var(--bg);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.best-matches-card {
+    height: 100%;
+    transition: all var(--transition);
+}
+
+.best-matches-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.best-matches-card .card-header {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--bg);
+}
+
+.best-matches-card .list-group-item {
+    border-left: none;
+    border-right: none;
+    transition: all var(--transition);
+}
+
+.best-matches-card .list-group-item:hover {
+    background: var(--active);
+}
+
+/* Season Dashboard Specific Styles */
+.season-dashboard {
+    padding: var(--space-lg);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Season Summary Cards */
+.season-summary-card {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--active) 100%);
+    border: none;
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    transition: all var(--transition);
+}
+
+.season-summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.season-summary-card h4 {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-sm);
+}
+
+.season-summary-card h2 {
+    color: var(--text);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Season Charts */
+.season-chart-container {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+    margin-bottom: var(--space-lg);
+}
+
+.season-chart-container:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+/* Season Leaderboard Table */
+.season-leaderboard {
+    background: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.season-leaderboard thead th {
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 600;
+    padding: var(--space-sm) var(--space);
+    border-bottom: 2px solid var(--border);
+}
+
+.season-leaderboard tbody td {
+    padding: var(--space-sm) var(--space);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+}
+
+.season-leaderboard tbody tr:hover {
+    background: var(--active);
+}
+
+/* Best Matches Section */
+.best-matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.best-match-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all var(--transition);
+}
+
+.best-match-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.best-match-card .card-header {
+    background: var(--bg);
+    padding: var(--space-sm) var(--space);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+.best-match-card .list-group-item {
+    padding: var(--space-sm) var(--space);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+}
+
+.best-match-card .list-group-item:hover {
+    background: var(--active);
+}
+
+/* Season Dashboard Charts */
+.season-chart {
+    width: 100%;
+    height: 400px;
+    margin-bottom: var(--space-lg);
+}
+
+.season-chart .plotly-graph-div {
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
