@@ -62,3 +62,11 @@ SPAI-Marketing/
 ├── .gitignore              # Git configuration
 ├── README.md               # Project documentation
 ├── requirements.txt        # Python dependencies
+
+```
+## 🛡️ License
+
+This project is **proprietary and closed-source**.  
+All rights reserved © 2025 Ghayda Tebessi.  
+Unauthorized use, copying, or distribution is strictly prohibited.
+
